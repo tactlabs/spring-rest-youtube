@@ -21,7 +21,7 @@ import org.tact.base.service.YoutubeService;
 
 
 @Service
-public class SocialFeedServiceImpl implements YoutubeService {
+public class YoutubeFeedServiceImpl implements YoutubeService {
 	
 	/**
 	 * 
@@ -38,15 +38,15 @@ public class SocialFeedServiceImpl implements YoutubeService {
 	private static Logger _log = LoggerFactory.getLogger(YoutubeFeed.class);
 	
 	//@Value("${youtube.playlistid}")
-	private String ytPlayListId = "PLqFAz7TQamvsQjY4Peo5nwm-f2HjL1jvc";
+	private String ytPlayListId = "";
 
 	//@Value("${youtube.feedurl}")
-	private String ytFeedURL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=30&playlistId={playlistid}&key={apikey}";
+	private String ytFeedURL = "";
 
 	//@Value("${youtube.apikey}")
-	private String ytApiKey = "AIzaSyBGNUsqZHibBgtzy9Brq7Y4FGbj0YH9Ilc";
+	private String ytApiKey = "";
 	
-	private static String YOUTUBE = "Youtube";
+	private static String YOUTUBE = "";
 	
 	private static String VIDEO_TYPE = "VIDEO";
 	
@@ -89,10 +89,10 @@ public class SocialFeedServiceImpl implements YoutubeService {
 					sf.setTitle(snippet.path("title").getTextValue());
 					sf.setFeedId(strVideoId);
 					sf.setLink("https://www.youtube.com/watch?v=" + strVideoId);
-					sf.setSource(SocialFeedServiceImpl.YOUTUBE);
+					sf.setSource(YoutubeFeedServiceImpl.YOUTUBE);
 					sf.setMessage(snippet.path("description").getTextValue());
 					sf.setSync_date(new Date());
-					sf.setType(SocialFeedServiceImpl.VIDEO_TYPE);
+					sf.setType(YoutubeFeedServiceImpl.VIDEO_TYPE);
 					sf.setUploaded_date(dtf.parse(snippet.path("publishedAt").getTextValue()));
 					
 					String thumbnaiStandard = snippet.path("thumbnails").path("standard").path("url").getTextValue();
